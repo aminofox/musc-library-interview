@@ -1,0 +1,109 @@
+get:
+  description: Returns a track based on a single ID.
+  operationId: findTrackById
+  tags:
+    - Track
+  parameters:
+    - name: id
+      in: path
+      description: ID of track to fetch
+      required: true
+      schema:
+        type: string
+        format: string
+  responses:
+    "200":
+      description: Track item response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              data:
+                type: object
+                $ref: "../../../schemas/track.yaml#/GetTrackById"
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"
+
+put:
+  description: Update Track
+  operationId: updateTrack
+  tags:
+    - Track
+  security: []
+  parameters:
+    - name: id
+      in: path
+      description: ID of track to fetch
+      required: true
+      schema:
+        type: string
+        format: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../../schemas/track.yaml#/PutTrack
+  responses:
+    "200":
+      description: Track item update response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  rowsAffected: 
+                    type: integer
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"
+
+delete:
+  description: delete a single track based on the ID supplied
+  operationId: deleteTrack
+  tags:
+    - Track
+  security:
+    - AdminAuthHeader: []
+  parameters:
+    - name: id
+      in: path
+      description: ID of track to delete
+      required: true
+      schema:
+        type: string
+        format: string
+  responses:
+    "200":
+      description: Track item deleted response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  rowsAffected: 
+                    type: integer
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"

@@ -1,0 +1,49 @@
+Unauthorized:
+  description: Unauthorized
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              status:
+                type: integer
+                format: uint32
+                default: 401
+              error:
+                type: string
+                default: Unauthorized
+
+InternalServerError: 
+  description: Internal Server Error
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              status:
+                type: integer
+                format: uint32
+                default: 500
+              error:
+                type: string
+                default: Internal Server Error
+
+BadRequestError: 
+  description: BadRequest Error
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              status:
+                type: integer
+                format: uint32
+                default: 400
+              errors:
+                type: array
+                items:
+                  $ref: "../schemas/common.yaml#Error"
+                

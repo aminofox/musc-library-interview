@@ -1,0 +1,13 @@
+PostDocument:
+  type: object
+  properties:
+    file:
+      type: file
+      format: binary
+      description: The uploaded file
+    category:
+      type: string
+      description: The category of the file
+    parent_id:
+      type: string
+      description: The parent ID

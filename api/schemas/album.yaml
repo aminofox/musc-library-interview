@@ -1,0 +1,84 @@
+Album:
+  type: object
+  properties:
+    id:
+      type: string
+      format: string
+      description: The ID of the album
+    title:
+      type: string
+      description: The title of the album
+    release_year:
+      type: integer
+      description: The release_year of the album
+    cover_image:
+      type: string
+      format: string
+      description: The cover_image of the album
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the album     
+     
+
+PostAlbum:
+  type: object
+  properties:
+    title:
+      type: string
+      description: The title of the album
+    release_year:
+      type: integer
+      description: The release_year of the album
+    cover_image:
+      type: string
+      format: string
+      description: The cover_image of the album
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the album  
+
+GetAlbumById:
+  type: object
+  properties:
+    id:
+      type: string
+      format: string
+      description: The ID of the album
+    title:
+      type: string
+      description: The title of the album
+    release_year:
+      type: integer
+      description: The release_year of the album
+    cover_image:
+      type: string
+      format: string
+      description: The cover_image of the album
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the album  
+
+PutAlbum:
+  type: object
+  properties:
+    title:
+      type: string
+      description: The title of the album
+    release_year:
+      type: integer
+      description: The release_year of the album
+    cover_image:
+      type: string
+      format: string
+      description: The cover_image of the album
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the album  

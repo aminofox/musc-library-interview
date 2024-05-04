@@ -1,0 +1,109 @@
+get:
+  description: Returns a artist based on a single ID.
+  operationId: findArtistById
+  tags:
+    - Artist
+  parameters:
+    - name: id
+      in: path
+      description: ID of artist to fetch
+      required: true
+      schema:
+        type: string
+        format: string
+  responses:
+    "200":
+      description: Artist item response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              data:
+                type: object
+                $ref: "../../../schemas/artist.yaml#/GetArtistById"
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"
+
+put:
+  description: Update Artist
+  operationId: updateArtist
+  tags:
+    - Artist
+  security: []
+  parameters:
+    - name: id
+      in: path
+      description: ID of artist to fetch
+      required: true
+      schema:
+        type: string
+        format: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../../schemas/artist.yaml#/PutArtist
+  responses:
+    "200":
+      description: Artist item update response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  rowsAffected: 
+                    type: integer
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"
+
+delete:
+  description: delete a single artist based on the ID supplied
+  operationId: deleteArtist
+  tags:
+    - Artist
+  security:
+    - AdminAuthHeader: []
+  parameters:
+    - name: id
+      in: path
+      description: ID of artist to delete
+      required: true
+      schema:
+        type: string
+        format: string
+  responses:
+    "200":
+      description: Artist item deleted response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  rowsAffected: 
+                    type: integer
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"

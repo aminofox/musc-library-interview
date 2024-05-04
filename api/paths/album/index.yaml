@@ -1,0 +1,64 @@
+get:
+  description: |
+    Returns all albums from the system that the user can access to.
+  operationId: listJobs
+  tags:
+    - Album
+  parameters:
+    - $ref: "../../definitions/common.yaml#/Order"
+    - $ref: "../../definitions/pagination.yaml#/Page"
+    - $ref: "../../definitions/pagination.yaml#/PerPage"
+    - $ref: "../../definitions/common.yaml#/Title"
+    - $ref: "../../definitions/common.yaml#/ReleaseYear"
+    - $ref: "../../definitions/common.yaml#/Album"
+  responses:
+    "200":
+      description: list albums
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              total: 
+                type: integer
+              data:
+                type: array
+                items:
+                  $ref: "../../schemas/album.yaml#Album"
+    "401":
+      $ref: "../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../definitions/error.yaml#/InternalServerError"
+
+post:
+  operationId: create album
+  tags:
+    - Album
+  security:
+    - AuthHeader: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/album.yaml#/PostAlbum
+  responses:
+    "200":
+      description: Album item response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"

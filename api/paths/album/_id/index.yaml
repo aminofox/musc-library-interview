@@ -1,0 +1,109 @@
+get:
+  description: Returns a album based on a single ID.
+  operationId: findAlbumById
+  tags:
+    - Album
+  parameters:
+    - name: id
+      in: path
+      description: ID of album to fetch
+      required: true
+      schema:
+        type: string
+        format: string
+  responses:
+    "200":
+      description: Album item response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              data:
+                type: object
+                $ref: "../../../schemas/album.yaml#/GetAlbumById"
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"
+
+put:
+  description: Update Album
+  operationId: updateAlbum
+  tags:
+    - Album
+  security: []
+  parameters:
+    - name: id
+      in: path
+      description: ID of album to fetch
+      required: true
+      schema:
+        type: string
+        format: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../../schemas/album.yaml#/PutAlbum
+  responses:
+    "200":
+      description: Album item update response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  rowsAffected: 
+                    type: integer
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"
+
+delete:
+  description: delete a single album based on the ID supplied
+  operationId: deleteAlbum
+  tags:
+    - Album
+  security:
+    - AdminAuthHeader: []
+  parameters:
+    - name: id
+      in: path
+      description: ID of album to delete
+      required: true
+      schema:
+        type: string
+        format: string
+  responses:
+    "200":
+      description: Album item deleted response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  rowsAffected: 
+                    type: integer
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"

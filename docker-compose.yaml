@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  mongodb:
+    hostname: mongo
+    image: mongo:6.0.5
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: music-local
+    networks:
+      - app-music
+    volumes:
+      - .docker/mongodb:/data/db
+    ports:
+      - "27017:27017"
+
+  swagger:
+    hostname: swagger
+    container_name: swagger
+    image: swaggerapi/swagger-editor
+    logging:
+      driver: none
+    volumes:
+      - ./api:/tmp
+    ports:
+      - 8080:8080
+    environment:
+      SWAGGER_FILE: /tmp/openapi.yaml
+    networks:
+      - app-music
+
+  app:
+    hostname: app
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    restart: always
+    working_dir: /app
+    depends_on:
+      - mongodb
+    networks:
+      - app-music
+
+networks:
+  app-music:
+    driver: bridge
+    name: app-music

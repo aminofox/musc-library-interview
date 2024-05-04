@@ -1,0 +1,102 @@
+Track:
+  type: object
+  properties:
+    id:
+      type: string
+      format: string
+      description: The ID of the track
+    title:
+      type: string
+      description: The title of the track
+    artist:
+      type: string
+      description: The artist of the track
+    album:
+      type: string
+      format: string
+      description: The album of the track
+    genre:
+      type: integer
+      description: The genre of the track
+    duration:
+      type: integer
+      description: The duration of the track
+    mp3_file:
+      type: string
+      format: string
+      description: The mp3 file of the track
+
+PostTrack:
+  type: object
+  properties:
+    title:
+      type: string
+      description: The title of the track
+    artist:
+      type: string
+      description: The artist of the track
+    album:
+      type: string
+      format: string
+      description: The album of the track
+    genre:
+      type: integer
+      description: The genre of the track
+    duration:
+      type: integer
+      description: The duration of the track
+    mp3_file:
+      type: string
+      format: string
+      description: The mp3 file of the track
+
+GetTrackById:
+  type: object
+  properties:
+    id:
+      type: string
+      format: string
+      description: The ID of the track
+    title:
+      type: string
+      description: The title of the track
+    artist:
+      type: string
+      description: The artist of the track
+    album:
+      type: string
+      format: string
+      description: The album of the track
+    genre:
+      type: integer
+      description: The genre of the track
+    duration:
+      type: integer
+      description: The duration of the track
+    mp3_file:
+      type: string
+      format: string
+      description: The mp3 file of the track
+PutTrack:
+  type: object
+  properties:
+    title:
+      type: string
+      description: The title of the track
+    artist:
+      type: string
+      description: The artist of the track
+    album:
+      type: string
+      format: string
+      description: The album of the track
+    genre:
+      type: integer
+      description: The genre of the track
+    duration:
+      type: integer
+      description: The duration of the track
+    mp3_file:
+      type: string
+      format: string
+      description: The mp3 file of the track

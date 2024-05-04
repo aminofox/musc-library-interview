@@ -1,0 +1,89 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Music Library Management
+  description: Music Library Management Project
+  contact:
+    name: SeangThai (Aminofox)
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Localhost
+
+paths:
+  /ping:
+    $ref: "./paths/index.yaml"
+
+  /auth/login:
+    $ref: "./paths/auth/login/index.yaml"
+  /auth/register:
+    $ref: "./paths/auth/register/index.yaml"
+  /auth/refresh-token:
+    $ref: "./paths/auth/refresh-token/index.yaml"
+
+  /track:
+    $ref: "./paths/track/index.yaml"
+  /track/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    $ref: "./paths/track/_id/index.yaml"
+
+  /album:
+    $ref: "./paths/album/index.yaml"
+  /album/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    $ref: "./paths/album/_id/index.yaml"
+  
+  /artist:
+    $ref: "./paths/artist/index.yaml"
+  /artist/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    $ref: "./paths/artist/_id/index.yaml"
+
+  /playlist:
+    $ref: "./paths/playlist/index.yaml"
+  /playlist/add-track:
+    $ref: "./paths/playlist/add-track/index.yaml"
+  /playlist/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    $ref: "./paths/playlist/_id/index.yaml"
+
+
+  /document:
+    $ref: "./paths/document/index.yaml"
+
+tags:
+  - name: Common
+  - name: Auth
+  - name: Track
+  - name: Album
+  - name: Artist
+  - name: Playlist
+  - name: Document
+
+components:
+  securitySchemes:
+    AuthHeader:
+      $ref: "./schemas/security.yaml#/AuthHeader"

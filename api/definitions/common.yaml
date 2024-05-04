@@ -1,0 +1,100 @@
+Order:
+  name: order
+  in: query
+  description: Sorting value.
+  required: false
+  schema:
+    type: string
+  example: "id 1"
+
+Name:
+  name: name
+  in: query
+  description: Search by name.
+  required: false
+  schema:
+    type: string
+    format: string
+
+Country:
+  name: country
+  in: query
+  description: Search by country.
+  required: false
+  schema:
+    type: string
+    format: string
+
+Title:
+  name: title
+  in: query
+  description: Search by title.
+  required: false
+  schema:
+    type: string
+    format: string
+
+Album:
+  name: albumId
+  in: query
+  description: Search by albumId.
+  required: false
+  schema:
+    type: string
+    format: string
+
+Artist:
+  name: artistId
+  in: query
+  description: Search by artistId.
+  required: false
+  schema:
+    type: string
+    format: string
+
+Genre:
+  name: genre
+  in: query
+  description: Search by genre.
+  required: false
+  schema:
+    type: integer
+    format: int
+
+ReleaseYear:
+  name: release_year
+  in: query
+  description: Search by release year.
+  required: false
+  schema:
+    type: integer
+    format: int
+
+Track:
+  name: trackId
+  in: query
+  description: Search by trackId.
+  required: false
+  schema:
+    type: string
+    format: string
+
+File:
+  name: file
+  required: true
+  schema:
+    type: file
+
+Category:
+  name: category
+  required: true
+  schema:
+    type: string
+    format: string
+
+ParentID:
+  name: parent_id
+  required: true
+  schema:
+    type: string
+    format: string

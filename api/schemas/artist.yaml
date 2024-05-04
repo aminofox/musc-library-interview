@@ -1,0 +1,84 @@
+Artist:
+  type: object
+  properties:
+    id:
+      type: string
+      format: string
+      description: The ID of the artist
+    name:
+      type: string
+      description: The name of the artist
+    country:
+      type: string
+      description: The country of the artist
+    avatar:
+      type: string
+      format: string
+      description: The avatar of the artist
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the artist     
+     
+
+PostArtist:
+  type: object
+  properties:
+    name:
+      type: string
+      description: The name of the artist
+    country:
+      type: string
+      description: The country of the artist
+    avatar:
+      type: string
+      format: string
+      description: The avatar of the artist
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the artist 
+
+GetArtistById:
+  type: object
+  properties:
+    id:
+      type: string
+      format: string
+      description: The ID of the artist
+    name:
+      type: string
+      description: The name of the artist
+    country:
+      type: string
+      description: The country of the artist
+    avatar:
+      type: string
+      format: string
+      description: The avatar of the artist
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the artist     
+
+PutArtist:
+  type: object
+  properties:
+    name:
+      type: string
+      description: The name of the artist
+    country:
+      type: string
+      description: The country of the artist
+    avatar:
+      type: string
+      format: string
+      description: The avatar of the artist
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the artist  

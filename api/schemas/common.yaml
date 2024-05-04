@@ -1,0 +1,21 @@
+Ping:
+  type: object
+  properties:
+    pong:
+      type: string
+      format: string
+      description: The response of api ping
+
+Error:
+  type: object
+  required:
+    - field
+    - tag
+    - error
+  properties:
+    field:
+      type: string
+    tag:
+      type: string
+    error:
+      type: string

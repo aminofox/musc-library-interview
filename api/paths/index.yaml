@@ -1,0 +1,12 @@
+get:
+  description: Ping request is sent to check if the server is alive.
+  operationId: ping
+  tags:
+    - Common
+  responses:
+    '200':
+      description: The server is still alive.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/common.yaml#Ping"

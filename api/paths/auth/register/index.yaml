@@ -1,0 +1,26 @@
+post:
+  operationId: refreshTokenUser
+  tags:
+    - Auth
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../../schemas/user.yaml#/Register
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data: 
+                type: object
+                $ref: "../../../schemas/user.yaml#/RegisterResponse"
+              status:
+                type: boolean
+    "400":
+      $ref: "../../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"

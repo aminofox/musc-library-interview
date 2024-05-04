@@ -1,0 +1,17 @@
+Page:
+  name: pageIndex
+  in: query
+  description: Pagination PageIndex.
+  required: false
+  schema:
+    type: integer
+    format: int
+
+PerPage:
+  name: pageSize
+  in: query
+  description: Pagination PerPage.
+  required: false
+  schema:
+    type: integer
+    format: int

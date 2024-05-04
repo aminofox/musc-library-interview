@@ -1,0 +1,64 @@
+get:
+  description: |
+    Returns all artists from the system that the user can access to.
+  operationId: listJobs
+  tags:
+    - Artist
+  parameters:
+    - $ref: "../../definitions/common.yaml#/Order"
+    - $ref: "../../definitions/pagination.yaml#/Page"
+    - $ref: "../../definitions/pagination.yaml#/PerPage"
+    - $ref: "../../definitions/common.yaml#/Name"
+    - $ref: "../../definitions/common.yaml#/Country"
+    - $ref: "../../definitions/common.yaml#/Track"
+  responses:
+    "200":
+      description: list artists
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              total: 
+                type: integer
+              data:
+                type: array
+                items:
+                  $ref: "../../schemas/artist.yaml#Artist"
+    "401":
+      $ref: "../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../definitions/error.yaml#/InternalServerError"
+
+post:
+  operationId: create artist
+  tags:
+    - Artist
+  security:
+    - AuthHeader: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/artist.yaml#/PostArtist
+  responses:
+    "200":
+      description: Artist item response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"

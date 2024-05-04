@@ -1,0 +1,30 @@
+post:
+  operationId: create document
+  tags:
+    - Document
+  security:
+    - AuthHeader: []
+  consumes:
+    - multipart/form-data
+  parameters:
+    - $ref: "../../definitions/common.yaml#File"
+    - $ref: "../../definitions/common.yaml#Category"
+    - $ref: "../../definitions/common.yaml#ParentID"
+  responses:
+    "200":
+      description: Document item response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              path: 
+                type: string
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"

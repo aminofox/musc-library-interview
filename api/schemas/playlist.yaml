@@ -1,0 +1,68 @@
+Playlist:
+  type: object
+  properties:
+    id:
+      type: string
+      format: string
+      description: The ID of the playlist
+    name:
+      type: string
+      description: The name of the playlist
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list of tracks in the playlist     
+     
+
+PostPlaylist:
+  type: object
+  properties:
+    name:
+      type: string
+      description: The name of the playlist
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the playlist 
+
+GetPlaylistById:
+  type: object
+  properties:
+    id:
+      type: string
+      format: string
+      description: The ID of the playlist
+    name:
+      type: string
+      description: The name of the playlist
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the playlist     
+
+PutPlaylist:
+  type: object
+  properties:
+    name:
+      type: string
+      description: The name of the playlist
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the playlist  
+
+AddTrackToPlaylist:
+  type: object
+  properties:
+    playlist_id:
+      type: string
+      description: The playlist_id of the playlist
+    tracks:
+      type: array
+      items:
+        type: string
+      description: The list tracks in the playlist    

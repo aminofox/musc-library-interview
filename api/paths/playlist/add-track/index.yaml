@@ -1,0 +1,28 @@
+post:
+  operationId: add track to playlist
+  tags:
+    - Playlist
+  security:
+    - AuthHeader: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../../schemas/playlist.yaml#/AddTrackToPlaylist
+  responses:
+    "200":
+      description: Playlist item response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rowsAffected: 
+                type: integer
+    "401":
+      $ref: "../../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../../definitions/error.yaml#/InternalServerError"

@@ -1,0 +1,74 @@
+Login:
+  type: object
+  properties:
+    e:
+      type: string
+      description: the email of user
+    p:
+      type: string
+      description: the password of user
+
+LoginUser:
+  type: object
+  properties:
+    id:
+      type: string
+      description: the id of user
+    full_name:
+      type: string
+      description: the full name of user
+
+LoginResponse:
+  type: object
+  properties:
+    user:
+      type: object
+      $ref: "#/LoginUser"
+    access_token:
+      type: string
+      description: The access token of the user
+    refresh_token:
+      type: string
+      description: The refresh token of the user
+
+Register:
+  type: object
+  required:
+    - email
+    - password
+    - confirm_password
+  properties:
+    email:
+      type: string
+      description: The email of the user
+    password:
+      type: string
+      description: The password of the user
+    confirm_password:
+      type: string
+      description: The confirm password of the user
+
+RegisterResponse:
+  type: object
+  properties:
+    id:
+      type: string
+      format: string
+      description: The id of the user
+
+RefreshToken:
+  type: object
+  properties:
+    refresh_token:
+      type: string
+      description: Refresh token user
+
+RefreshResponse:
+  type: object
+  properties:
+    e:
+      type: string
+      description: the email of user
+    p:
+      type: string
+      description: the password of user

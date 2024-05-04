@@ -1,0 +1,65 @@
+get:
+  description: |
+    Returns all playlists from the system that the user can access to.
+  operationId: listJobs
+  tags:
+    - Playlist
+  parameters:
+    - $ref: "../../definitions/common.yaml#/Order"
+    - $ref: "../../definitions/pagination.yaml#/Page"
+    - $ref: "../../definitions/pagination.yaml#/PerPage"
+    - $ref: "../../definitions/common.yaml#/Title"
+    - $ref: "../../definitions/common.yaml#/Album"
+    - $ref: "../../definitions/common.yaml#/Artist"
+    - $ref: "../../definitions/common.yaml#/Genre"
+  responses:
+    "200":
+      description: list playlists
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+              total: 
+                type: integer
+              data:
+                type: array
+                items:
+                  $ref: "../../schemas/playlist.yaml#Playlist"
+    "401":
+      $ref: "../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../definitions/error.yaml#/InternalServerError"
+
+post:
+  operationId: create playlist
+  tags:
+    - Playlist
+  security:
+    - AuthHeader: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/playlist.yaml#/PostPlaylist
+  responses:
+    "200":
+      description: Playlist item response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+    "401":
+      $ref: "../../../definitions/error.yaml#/Unauthorized"
+    "400":
+      $ref: "../../definitions/error.yaml#/BadRequestError"
+    "500":
+      $ref: "../../../definitions/error.yaml#/InternalServerError"

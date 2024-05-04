@@ -1,0 +1,5 @@
+AuthHeader:
+  name: Authorization
+  description: Everyone that logged in can access.
+  type: apiKey
+  in: header
