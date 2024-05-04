@@ -73,11 +73,13 @@ func (t *trackUseCase) Update(ctx *gin.Context, input *UpdateTrackInput) (*Updat
 
 		_, err := t.albumRepository.Update(ctx, newAlbum.ID.Hex(), newAlbum)
 		if err != nil {
+			session.AbortTransaction(ctx)
 			return &UpdateTrackOutput{0}, ErrUpdateTrackFailed
 		}
 
 		_, err = t.albumRepository.Update(ctx, currentAlbum.ID.Hex(), currentAlbum)
 		if err != nil {
+			session.AbortTransaction(ctx)
 			return &UpdateTrackOutput{0}, ErrUpdateTrackFailed
 		}
 	}
@@ -88,17 +90,20 @@ func (t *trackUseCase) Update(ctx *gin.Context, input *UpdateTrackInput) (*Updat
 
 		_, err := t.artistRepository.Update(ctx, newArtist.ID.Hex(), newArtist)
 		if err != nil {
+			session.AbortTransaction(ctx)
 			return &UpdateTrackOutput{0}, ErrUpdateTrackFailed
 		}
 
 		_, err = t.artistRepository.Update(ctx, currentArtist.ID.Hex(), currentArtist)
 		if err != nil {
+			session.AbortTransaction(ctx)
 			return &UpdateTrackOutput{0}, ErrUpdateTrackFailed
 		}
 	}
 
 	rowsAffected, err := t.trackRepository.Update(ctx, input.ID, data)
 	if err != nil {
+		session.AbortTransaction(ctx)
 		return &UpdateTrackOutput{RowsAffected: 0}, ErrUpdateTrackFailed
 	}
 
