@@ -63,6 +63,22 @@ func (u *artistRepositoryImpl) GetByID(ctx context.Context, artistID string) (*e
 	return artist, err
 }
 
+func (u *artistRepositoryImpl) GetByName(ctx context.Context, name string) ([]string, error) {
+	var artists []string
+	collection := u.mongodb.Collection(CollectionArtist)
+	filter := bson.M{"name": bson.M{"$regex": name, "$options": "i"}}
+	cursor, err := collection.Find(ctx, filter)
+	for cursor.Next(ctx) {
+		var artist *entity.Artist
+		if err := cursor.Decode(&artist); err != nil {
+			return nil, err
+		}
+		artists = append(artists, artist.ID.Hex())
+	}
+
+	return artists, err
+}
+
 func (u *artistRepositoryImpl) GetList(ctx context.Context, params entity.GetListArtistOption) ([]*entity.Artist, error) {
 	var artists []*entity.Artist
 	collection := u.mongodb.Collection(CollectionArtist)

@@ -106,14 +106,33 @@ func (u *trackRepositoryImpl) GetList(ctx context.Context, params entity.GetList
 		findOptions.SetSkip(int64(params.PageSize * (params.PageIndex - 1)))
 	}
 
-	filter := bson.M{
-		"$or": []interface{}{
-			bson.M{"title": params.Title},
-			bson.M{"artist": params.Artist},
-			bson.M{"album": params.Album},
-			bson.M{"genre": params.Genre},
-		},
+	var searchConditions []bson.M
+
+	if params.Title != "" {
+		searchConditions = append(searchConditions, bson.M{"title": params.Title})
 	}
+
+	if params.Artist != "" {
+		searchConditions = append(searchConditions, bson.M{"artist": params.Artist})
+	}
+
+	if params.Album != "" {
+		searchConditions = append(searchConditions, bson.M{"album": params.Album})
+	}
+
+	if params.Genre != "" {
+		searchConditions = append(searchConditions, bson.M{"genre": params.Genre})
+	}
+
+	if params.AlbumIds != nil && len(*params.AlbumIds) > 0 {
+		searchConditions = append(searchConditions, bson.M{"album": bson.M{"$in": params.AlbumIds}})
+	}
+
+	if params.ArtistIds != nil && len(*params.ArtistIds) > 0 {
+		searchConditions = append(searchConditions, bson.M{"artist": bson.M{"$in": params.ArtistIds}})
+	}
+
+	filter := bson.M{"$or": searchConditions}
 
 	cursor, err := collection.Find(ctx, filter, findOptions)
 	if err != nil {

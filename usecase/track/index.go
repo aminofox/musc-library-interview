@@ -13,7 +13,7 @@ var (
 	ErrCreateTrackFailed  = errors.New("create track failed")
 	ErrDeleteTrackFailed  = errors.New("delete track failed")
 	ErrGetByIdTrackFailed = errors.New("get by id track failed")
-	ErrGetListTrackFailed = errors.New("get kist track failed")
+	ErrGetListTrackFailed = errors.New("get list track failed")
 	ErrUpdateTrackFailed  = errors.New("update track failed")
 )
 

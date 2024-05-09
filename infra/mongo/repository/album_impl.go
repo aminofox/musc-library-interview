@@ -61,6 +61,22 @@ func (u *albumRepositoryImpl) GetByID(ctx context.Context, albumID string) (*ent
 	return album, err
 }
 
+func (u *albumRepositoryImpl) GetByTitle(ctx context.Context, title string) ([]string, error) {
+	var albums []string
+	collection := u.mongodb.Collection(CollectionAlbum)
+	filter := bson.M{"title": bson.M{"$regex": title, "$options": "i"}}
+	cursor, err := collection.Find(ctx, filter)
+	for cursor.Next(ctx) {
+		var album *entity.Album
+		if err := cursor.Decode(&album); err != nil {
+			return nil, err
+		}
+		albums = append(albums, album.ID.Hex())
+	}
+
+	return albums, err
+}
+
 func (u *albumRepositoryImpl) GetList(ctx context.Context, params entity.GetListAlbumOption) ([]*entity.Album, error) {
 	var albums []*entity.Album
 	collection := u.mongodb.Collection(CollectionAlbum)

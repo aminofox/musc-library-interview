@@ -15,8 +15,10 @@ type Track struct {
 
 type GetListTrackOption struct {
 	GetListOption
-	Title  string `json:"title" bson:"title"`
-	Artist string `json:"artist" bson:"artist"`
-	Album  string `json:"album" bson:"album"`
-	Genre  string `json:"genre" bson:"genre"`
+	Title     string    `json:"title" bson:"title"`
+	Artist    string    `json:"artist" bson:"artist"`
+	Album     string    `json:"album" bson:"album"`
+	Genre     string    `json:"genre" bson:"genre"`
+	ArtistIds *[]string `json:"artist_ids" bson:"artist_ids"`
+	AlbumIds  *[]string `json:"album_ids" bson:"album_ids"`
 }
